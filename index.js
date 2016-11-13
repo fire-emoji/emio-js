@@ -14,6 +14,10 @@ function toEmioData(data) {
   }
 }
 
+app.get('/', function(request, response) {
+  response.send('You must make a proper query!');
+});
+
 /**
  *  HTTP get /emotions
  */
