@@ -3,6 +3,8 @@ var Client = require('node-rest-client').Client;
 
 var app = express();
 
+app.set('port', (process.env.PORT || 5000));
+
 function toEmioData(data) {
   return {
     "Text": "Taco!",
@@ -30,7 +32,7 @@ app.get('/emotions/area/:tags', function(request, response) {
   if (tags.length == 4) {
     // Appropriate tag.
     // Handle Appropriately.
-   j = toEmioData(tags)
+   j = toEmioData(tags);
    response.send(JSON.stringify(j));
   } else {
     response.send(404);
@@ -75,5 +77,6 @@ app.get('/amadeus/origin/:origin/max_price/:max_price', function(request, respon
   });
 });
 
-
-app.listen(3000);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
