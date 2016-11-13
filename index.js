@@ -85,6 +85,9 @@ app.get('/amadeus/origin/:origin/max_price/:max_price', function(request, respon
   client.get(reqstring, function(data, res) {
     // console.log("Data: ");
     // console.log(data);
+    if (data.length > 10) {
+      data.slice(0,10);
+    }
     response.send(data);
   });
 });
