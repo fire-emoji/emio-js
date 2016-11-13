@@ -12,7 +12,8 @@
   "dependencies": {
     "ejs": "2.4.1",
     "express": "4.13.3",
-    "node-rest-client" : "latest"
+    "node-rest-client" : "latest",
+    "watson-developer-cloud":"latest"
   },
   "repository": {
     "type": "git",

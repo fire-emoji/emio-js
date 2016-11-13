@@ -1,9 +1,16 @@
 var express = require('express');
 var Client = require('node-rest-client').Client;
+var fs = require('fs');
+
 
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
+
+
+function readTextFileToJSON() {
+  return fs.readFileSync('DATA', 'utf8');
+}
 
 function toEmioData(data) {
   return {
@@ -85,8 +92,10 @@ app.get('/amadeus/origin/:origin/max_price/:max_price', function(request, respon
   client.get(reqstring, function(data, res) {
     // console.log("Data: ");
     // console.log(data);
-    if (data.length > 10) {
-      data.slice(0,10);
+    if (data.results.length > 10) {
+      for (i = 10; i < data.results.length; i+=1) {
+        data.results.splice(i,i+1);
+      }
     }
     response.send(data);
   });
