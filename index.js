@@ -9,8 +9,8 @@ function toEmioData(data) {
   return {
     "Text": "Taco!",
     "Location": {
-      "Longitude": data[0],
-      "Latitude" : data[1],
+      "Longitude": parseFloat(data[0]),
+      "Latitude" : parseFloat(data[1]),
     },
     "Emotion" : data[2]
   }
