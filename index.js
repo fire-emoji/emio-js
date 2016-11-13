@@ -16,6 +16,18 @@ function toEmioData(data) {
   }
 }
 
+function generateTestData(long1, lat1, long2, lat2, n) {
+  testset = [];
+  for (i = 0; i < n; i+=1) {
+    var data = [];
+    data.push(-1 * Math.floor((Math.random() * 125) + 119));
+    data.push(Math.floor((Math.random() * 40) + 34));
+    data.push(Math.floor(Math.random() * 5));
+    testset.push(toEmioData(data));
+  }
+  return testset;
+}
+
 app.get('/', function(request, response) {
   response.send('You must make a proper query!');
 });
@@ -75,6 +87,19 @@ app.get('/amadeus/origin/:origin/max_price/:max_price', function(request, respon
     // console.log(data);
     response.send(data);
   });
+});
+
+// DEBUG
+
+app.get('/debug/area/:tags/:num', function(request, response) {
+  var tags = request.params.tags.split(',');
+  if (tags.length == 4) {
+    // Appropriate tag.
+    testset = generateTestData(tags[0], tags[1], tags[2], tags[3], request.params.num);
+   response.send(JSON.stringify(testset));
+  } else {
+    response.send(404);
+  }
 });
 
 app.listen(app.get('port'), function() {
