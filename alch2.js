@@ -1,7 +1,7 @@
 var watson = require('watson-developer-cloud');
 var fs = require('fs');
 var alchemy_language = watson.alchemy_language({
-  api_key:  "a46af75e70d98ff92433484372e2c03005a1f180"
+  api_key:  API_KEY
 });
 var current = [];
 var finalEmotion = ""
